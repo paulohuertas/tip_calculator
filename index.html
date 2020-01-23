@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+
+	<link rel="stylesheet" href="styles.css">
+
+	<title>Calculator</title>
+
+</head>
+<body id="content">
+	<div id="top-header">
+		<h3>TIP CALCULATOR</h3>
+	</div>
+	<div id="main-body">
+		<p>How much was your bill</p>
+		<br>
+		<p id="dollar-sign">$</p><input type="text" placeholder="Bill Amount" name="money-input" id="money" required>
+		<br>
+		<p>How was your service?</p>
+
+		<form action="select_service">
+			<select id="service_type" required>
+				<option value="default">-- Choose an option --</option>
+				<option value="excelent">Excelent</option>
+				<option value="good">Good</option>
+				<option value="regular">Regular</option>
+				<option value="poor">Poor</option>
+				<option value="terrible">Terrible</option>
+			</select>
+		</form>
+
+		<p>How many people are sharing the bill?</p><br>
+
+		<input type="text" id="number-people" name="number_of_people" placeholder="Number of People" required><p>people</p><br>
+
+		<button type="button" id="calculate" onclick="getTotal()">CALCULATE</button>
+
+		<input type="text" id="result" name="resultado" placeholder="Total each should pay"></input>
+
+	</div>
+
+
+<script type="text/javascript">
+
+	function getTotal(){
+		var service_type = document.getElementById("service_type").value;
+		var billAmount = document.getElementById("money").value;
+		var numberOfPeople = document.getElementById("number-people").value;
+		var total = document.getElementById("result");
+
+		if(service_type == "excelent" && billAmount > 0 && numberOfPeople > 1){
+			var shareAmount = parseInt((billAmount) * 0.1) / numberOfPeople;
+			total.value = shareAmount;
+		}else if(service_type == "good" && billAmount > 0 && numberOfPeople > 1){
+			var shareAmount = parseInt((billAmount) * 0.08) / numberOfPeople;
+			total.value = shareAmount;
+		}else if(service_type == "regular" && billAmount > 0 && numberOfPeople > 1){
+			var shareAmount = parseInt((billAmount) * 0.05) / numberOfPeople;
+			total.value = shareAmount;
+		} else if(service_type == "poor" && billAmount > 0 && numberOfPeople > 1){
+			var shareAmount = parseInt((billAmount * 0.02) / numberOfPeople);
+			total.value = shareAmount;
+		} else if(service_type == "terrible" && billAmount > 0 && numberOfPeople > 1){
+			total.value = "NO TIPS";
+		}
+	}
+
+	</script>
+
+</body>
+</html>
